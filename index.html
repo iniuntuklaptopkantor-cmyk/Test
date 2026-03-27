@@ -5,31 +5,48 @@
   <title>Ari Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }body {
-  background: linear-gradient(180deg, #0b0f19, #020617);
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }html { scroll-behavior: smooth; }
+
+body {
+  background: radial-gradient(circle at top, #0b0f19, #020617);
   color: #e5e7eb;
   overflow-x: hidden;
 }
- 
+
+/* floating background dots */
+body::before {
+  content: '';
+  position: fixed;
+  width: 100%; height: 100%;
+  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+}
+
 nav {
   position: fixed;
   width: 100%;
   top: 0;
   background: rgba(0,0,0,0.3);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   z-index: 1000;
 }
- 
+
 nav a {
   color: #e5e7eb;
   margin-left: 20px;
   text-decoration: none;
   font-size: 0.9rem;
+  transition: 0.3s;
 }
- 
+
+nav a:hover {
+  color: #38bdf8;
+}
+
 header {
   height: 100vh;
   display: flex;
@@ -38,78 +55,94 @@ header {
   align-items: center;
   text-align: center;
 }
- 
+
 header h1 {
   font-size: 3rem;
 }
- 
+
 .typing {
   color: #38bdf8;
   margin-top: 10px;
   font-size: 1.2rem;
 }
- 
+
 .btn {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 12px 25px;
   border-radius: 999px;
   background: #38bdf8;
   color: black;
   text-decoration: none;
   transition: 0.3s;
+  box-shadow: 0 0 20px rgba(56,189,248,0.6);
 }
- 
+
 .btn:hover {
+  transform: scale(1.05);
   background: #0ea5e9;
 }
- 
+
 section {
   padding: 80px 20px;
   max-width: 1100px;
   margin: auto;
 }
- 
+
 h2 {
   font-size: 2rem;
   margin-bottom: 20px;
 }
- 
+
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
- 
+
 .card {
   background: rgba(255,255,255,0.05);
   border-radius: 16px;
   padding: 20px;
   backdrop-filter: blur(10px);
-  transition: 0.3s;
+  transition: 0.4s;
+  position: relative;
+  overflow: hidden;
 }
- 
+
+.card::before {
+  content: '';
+  position: absolute;
+  width: 100%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.1), transparent);
+  top: 0; left: -100%;
+  transition: 0.5s;
+}
+
+.card:hover::before {
+  left: 100%;
+}
+
 .card:hover {
-  transform: translateY(-8px) scale(1.02);
-  background: rgba(255,255,255,0.08);
+  transform: translateY(-10px) scale(1.03);
 }
- 
+
 footer {
   text-align: center;
   padding: 20px;
   color: #6b7280;
 }
- 
+
 .fade {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
 }
- 
+
 .fade.show {
   opacity: 1;
   transform: translateY(0);
 }
- 
+
   </style>
 </head>
 <body><nav>
@@ -120,12 +153,15 @@ footer {
     <a href="#contact">Contact</a>
   </div>
 </nav><header>
-  <h1>Hi, I'm Ari 👋</h1>
+  <h1>Hi, I'm Bagas 👋</h1>
   <div class="typing" id="typing"></div>
   <a href="#projects" class="btn">View My Work</a>
 </header><section id="about" class="fade">
   <h2>About Me</h2>
   <p>I create digital content, design visuals, and explore trading strategies.</p>
+</section><section class="fade">
+  <h2>Skills</h2>
+  <p>HTML, CSS, Design, Trading Analysis</p>
 </section><section id="projects" class="fade">
   <h2>Projects</h2>
   <div class="projects">
@@ -148,7 +184,6 @@ footer {
 </section><footer>
   <p>© 2026 Ari</p>
 </footer><script>
-  // scroll animation
   const faders = document.querySelectorAll('.fade');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -156,27 +191,24 @@ footer {
     });
   });
   faders.forEach(el => observer.observe(el));
- 
-  // typing effect
+
   const text = ["Content Creator", "Designer", "Trader"];
   let i = 0, j = 0, current = '', isDeleting = false;
- 
+
   function type() {
     current = text[i];
     document.getElementById('typing').textContent = current.substring(0, j);
- 
-    if (!isDeleting && j < current.length) {
-      j++;
-    } else if (isDeleting && j > 0) {
-      j--;
-    } else {
+
+    if (!isDeleting && j < current.length) j++;
+    else if (isDeleting && j > 0) j--;
+    else {
       isDeleting = !isDeleting;
       if (!isDeleting) i = (i + 1) % text.length;
     }
- 
+
     setTimeout(type, isDeleting ? 50 : 100);
   }
- 
+
   type();
 </script></body>
 </html>
