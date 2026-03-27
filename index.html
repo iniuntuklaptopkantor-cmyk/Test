@@ -13,7 +13,6 @@ body {
   overflow-x: hidden;
 }
 
-/* floating background dots */
 body::before {
   content: '';
   position: fixed;
@@ -43,9 +42,7 @@ nav a {
   transition: 0.3s;
 }
 
-nav a:hover {
-  color: #38bdf8;
-}
+nav a:hover { color: #38bdf8; }
 
 header {
   height: 100vh;
@@ -56,9 +53,7 @@ header {
   text-align: center;
 }
 
-header h1 {
-  font-size: 3rem;
-}
+header h1 { font-size: 3rem; }
 
 .typing {
   color: #38bdf8;
@@ -83,9 +78,25 @@ header h1 {
 }
 
 section {
-  padding: 80px 20px;
+  padding: 60px 20px;
   max-width: 1100px;
-  margin: auto;
+  margin: 60px auto;
+}
+
+/* BOX STYLE (INI YANG KAMU MAU 🔥) */
+.box {
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 40px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transition: 0.4s;
+}
+
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 
 h2 {
@@ -118,9 +129,7 @@ h2 {
   transition: 0.5s;
 }
 
-.card:hover::before {
-  left: 100%;
-}
+.card:hover::before { left: 100%; }
 
 .card:hover {
   transform: translateY(-10px) scale(1.03);
@@ -149,38 +158,47 @@ footer {
   <div>Ari</div>
   <div>
     <a href="#about">About</a>
+    <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </div>
 </nav><header>
-  <h1>Hi, I'm Bagas 👋</h1>
+  <h1>Hi, I'm Ari 👋</h1>
   <div class="typing" id="typing"></div>
   <a href="#projects" class="btn">View My Work</a>
 </header><section id="about" class="fade">
-  <h2>About Me</h2>
-  <p>I create digital content, design visuals, and explore trading strategies.</p>
-</section><section class="fade">
-  <h2>Skills</h2>
-  <p>HTML, CSS, Design, Trading Analysis</p>
+  <div class="box">
+    <h2>About Me</h2>
+    <p>I create digital content, design visuals, and explore trading strategies.</p>
+  </div>
+</section><section id="skills" class="fade">
+  <div class="box">
+    <h2>Skills</h2>
+    <p>HTML, CSS, Design, Trading Analysis</p>
+  </div>
 </section><section id="projects" class="fade">
-  <h2>Projects</h2>
-  <div class="projects">
-    <div class="card">
-      <h3>Trading Journal</h3>
-      <p>Tracking performance and strategies.</p>
-    </div>
-    <div class="card">
-      <h3>Design Content</h3>
-      <p>Educational digital art content.</p>
-    </div>
-    <div class="card">
-      <h3>Portfolio Website</h3>
-      <p>Modern UI personal site.</p>
+  <div class="box">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>Trading Journal</h3>
+        <p>Tracking performance and strategies.</p>
+      </div>
+      <div class="card">
+        <h3>Design Content</h3>
+        <p>Educational digital art content.</p>
+      </div>
+      <div class="card">
+        <h3>Portfolio Website</h3>
+        <p>Modern UI personal site.</p>
+      </div>
     </div>
   </div>
 </section><section id="contact" class="fade">
-  <h2>Contact</h2>
-  <p>Email: your@email.com</p>
+  <div class="box">
+    <h2>Contact</h2>
+    <p>Email: your@email.com</p>
+  </div>
 </section><footer>
   <p>© 2026 Ari</p>
 </footer><script>
@@ -192,7 +210,7 @@ footer {
   });
   faders.forEach(el => observer.observe(el));
 
-  const text = ["Broadcast Support", "Audio Visual Technician", "Live Streaming Operator", "vMix"];
+  const text = ["Content Creator", "Designer", "Trader"];
   let i = 0, j = 0, current = '', isDeleting = false;
 
   function type() {
