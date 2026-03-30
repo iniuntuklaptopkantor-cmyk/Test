@@ -2,19 +2,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ari Portfolio</title>  <!-- FONT -->  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">  <style>
-    /* RESET + GLOBAL STYLE */
+  <title>Ari Portfolio</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">  <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
     html { scroll-behavior: smooth; }
 
-    /* BACKGROUND UTAMA */
     body {
       background: radial-gradient(circle at top, #0b0f19, #020617);
       color: #e5e7eb;
       overflow-x: hidden;
     }
 
-    /* BACKGROUND TITIK-TITIK */
     body::before {
       content: '';
       position: fixed;
@@ -24,13 +21,11 @@
       z-index: -2;
     }
 
-    /* BACKGROUND 3D FOLLOW CURSOR */
+    /* BACKGROUND 3D */
     .bg-3d {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 120%;
-      height: 120%;
+      top: 0; left: 0;
+      width: 120%; height: 120%;
       background: radial-gradient(circle, rgba(56,189,248,0.2), rgba(139,92,246,0.15), transparent);
       filter: blur(60px);
       pointer-events: none;
@@ -41,14 +36,24 @@
     /* NAVBAR */
     nav {
       position: fixed;
-      width: 100%;
       top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       background: rgba(0,0,0,0.3);
       backdrop-filter: blur(12px);
       padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      z-index: 1000;
+      border-radius: 20px;
+      margin-top: 10px;
     }
 
     nav a {
@@ -56,101 +61,87 @@
       margin-left: 20px;
       text-decoration: none;
       font-size: 0.9rem;
-      transition: 0.3s;
     }
 
     nav a:hover { color: #38bdf8; }
 
-    /* HERO SECTION */
+    /* HERO LAYOUT */
     header {
       height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
       align-items: center;
-      text-align: center;
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px;
+      gap: 40px;
     }
 
-    header h1 { font-size: 3rem; }
+    /* NAMA BESAR */
+    .name h1 {
+      font-size: 3rem;
+      line-height: 1.2;
+    }
 
+    .name span:nth-child(1) { color: #ffffff; }
+    .name span:nth-child(2) { color: #38bdf8; }
+    .name span:nth-child(3) { color: #8b5cf6; }
+
+    /* TYPING TEXT */
     .typing {
-      color: #38bdf8;
-      margin-top: 10px;
-      font-size: 1.2rem;
+      margin-top: 15px;
+      color: #9ca3af;
+    }
+
+    /* DESKRIPSI */
+    .desc {
+      margin-top: 15px;
+      color: #9ca3af;
+      max-width: 500px;
+      font-size: 0.9rem;
+    }
+
+    /* BUTTON */
+    .btn-group {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
     }
 
     .btn {
-      margin-top: 20px;
-      padding: 12px 25px;
+      padding: 10px 20px;
       border-radius: 999px;
-      background: #38bdf8;
-      color: black;
       text-decoration: none;
       transition: 0.3s;
-      box-shadow: 0 0 20px rgba(56,189,248,0.6);
     }
 
-    .btn:hover {
-      transform: scale(1.05);
-      background: #0ea5e9;
+    .btn-primary {
+      background: #38bdf8;
+      color: black;
     }
 
-    /* SECTION UMUM */
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+    }
+
+    .btn:hover { transform: scale(1.05); }
+
+    /* CARD KANAN */
+    .code-box {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
     section {
       padding: 60px 20px;
       max-width: 1100px;
-      margin: 60px auto;
-    }
-
-    /* BOX PER SECTION */
-    .box {
-      background: rgba(255,255,255,0.05);
-      border-radius: 20px;
-      padding: 40px;
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      transition: 0.4s;
-    }
-
-    .box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    }
-
-    h2 { font-size: 2rem; margin-bottom: 20px; }
-
-    /* PROJECT GRID */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    /* CARD PROJECT */
-    .card {
-      background: rgba(255,255,255,0.05);
-      border-radius: 16px;
-      padding: 20px;
-      backdrop-filter: blur(10px);
-      transition: 0.4s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      width: 100%; height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.1), transparent);
-      top: 0; left: -100%;
-      transition: 0.5s;
-    }
-
-    .card:hover::before { left: 100%; }
-
-    .card:hover {
-      transform: translateY(-10px) scale(1.03);
+      margin: auto;
     }
 
     footer {
@@ -158,95 +149,66 @@
       padding: 20px;
       color: #6b7280;
     }
-
-    /* ANIMASI SCROLL */
-    .fade {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
-    }
-
-    .fade.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style></head>
-<body><!-- BACKGROUND 3D --><div class="bg-3d"></div><!-- NAVBAR --><nav>
-  <div>Ari</div>
-  <div>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav><!-- HERO --><header>
-  <h1>Hi, I'm Ari 👋</h1>
-  <div class="typing" id="typing"></div>
-  <a href="#projects" class="btn">View My Work</a>
-</header><!-- ABOUT --><section id="about" class="fade">
-  <div class="box">
-    <h2>About Me</h2>
-    <p>EDIT DI SINI SESUAI DESKRIPSI KAMU</p>
-  </div>
-</section><!-- SKILLS --><section id="skills" class="fade">
-  <div class="box">
-    <h2>Skills</h2>
-    <p>EDIT DI SINI SESUAI SKILL KAMU</p>
-  </div>
-</section><!-- PROJECTS --><section id="projects" class="fade">
-  <div class="box">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="card">
-        <h3>Project 1</h3>
-        <p>EDIT DESKRIPSI</p>
-      </div>
+<body><div class="bg-3d"></div><nav>
+  <div class="nav-container">
+    <div>Ari</div>
+    <div>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
     </div>
   </div>
-</section><!-- CONTACT --><section id="contact" class="fade">
-  <div class="box">
-    <h2>Contact</h2>
-    <p>Email: your@email.com</p>
-  </div>
+</nav><!-- HERO --><header>  <!-- KIRI -->  <div class="name">
+    <h1>
+      <span>Bagas</span><br>
+      <span>Putra</span><br>
+      <span>Ari Arfindo</span>
+    </h1><!-- TYPING -->
+<div class="typing" id="typing"></div>
+
+<!-- DESKRIPSI (EDIT SENDIRI) -->
+<div class="desc">
+  TULIS DESKRIPSI KAMU DI SINI
+</div>
+
+<!-- BUTTON -->
+<div class="btn-group">
+  <a href="#contact" class="btn btn-primary">Contact Me</a>
+  <a href="#" class="btn btn-secondary">LinkedIn</a>
+</div>
+
+  </div>  <!-- KANAN -->  <div class="code-box">
+    role = "Your Role" <br>
+    location = "Your City" <br>
+    experience = "X Years" <br>
+    skills = ["Skill1", "Skill2"]
+  </div></header><section id="contact">
+  <h2>Contact</h2>
+  <p>Email: your@email.com</p>
 </section><footer>
   <p>© 2026 Ari</p>
 </footer><script>
-  // ANIMASI SCROLL
-  const faders = document.querySelectorAll('.fade');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('show');
-    });
-  });
-  faders.forEach(el => observer.observe(el));
-
-  // TYPING EFFECT
-  const text = ["Content Creator", "Designer", "Trader"];
-  let i = 0, j = 0, current = '', isDeleting = false;
+  // TYPING EFFECT (CYBERSECURITY LEARNER)
+  const text = "Cybersecurity Learner";
+  let i = 0;
 
   function type() {
-    current = text[i];
-    document.getElementById('typing').textContent = current.substring(0, j);
-
-    if (!isDeleting && j < current.length) j++;
-    else if (isDeleting && j > 0) j--;
-    else {
-      isDeleting = !isDeleting;
-      if (!isDeleting) i = (i + 1) % text.length;
+    if (i < text.length) {
+      document.getElementById("typing").textContent += text.charAt(i);
+      i++;
+      setTimeout(type, 80);
     }
-
-    setTimeout(type, isDeleting ? 50 : 100);
   }
 
   type();
 
-  // BACKGROUND GERAK IKUT KURSOR (EFEK 3D)
+  // BACKGROUND GERAK
   const bg = document.querySelector('.bg-3d');
-
   document.addEventListener('mousemove', (e) => {
     let x = (e.clientX / window.innerWidth - 0.5) * 30;
     let y = (e.clientY / window.innerHeight - 0.5) * 30;
-
     bg.style.transform = `translate(${-x}px, ${-y}px)`;
   });
 </script></body>
